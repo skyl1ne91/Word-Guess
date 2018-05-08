@@ -1,7 +1,10 @@
 
+
+// All my variable's
+
 var guesses = [];
 
-var player = [];
+var playerguess = [];
 
 var lifes = 10;
 
@@ -14,73 +17,70 @@ var underscore = [];
 var words = ["ammil", "weald", "psithurism", "brivet", "petrichor",
             "dendrophile", "moonwake", "komorebi", "irusu", "ikigai","carlos", "gosick"];
 
+// the extra 1000 randomizer!!
+// a.k.a it randomizes the array of words
+var random = words[Math.floor(Math.random() * words.length)];
 
-random = words[Math.floor(Math.random() * words.length)];
-var justin = random.split("");
-console.log(justin);
-
-
-
-begin();
+console.log(random);
 
 
-console.log(underscore);
+// This is the beginning of the function
+        begin();
 
-    function begin(){
+        function begin(){
 
-
+// This loops around the 'random' variable to create the underscore necessary to that word
         for(var i = 0; i < random.length; i++)
         {
            underscore.push(" _ ");
-            
+           console.log(underscore);          
+        }
+// this displays the underscore on the screen
+        document.getElementById("randomword").textContent = underscore.join(" ");
         }
 
-        document.getElementById("randomword").textContent = underscore;
+// =====================================================================================================
+// =====================================================================================================
+// =====================================================================================================
+// =====================================================================================================
+// =====================================================================================================
 
-
-
-    }
-
-
-
-    document.getElementById("randomword").innerHTML= underscore;
-    document.getElementById("life").innerHTML= "Lifes Left: " + lifes;
-    document.getElementById("win").innerHTML= "Wins : " + wins;
-    document.getElementById("loses").innerHTML= "Loses: " +loses;
-    document.getElementById("guess").innerHTML= "Guesses: " + guesses;
-    document.getElementById("");
-
-
-    // this part is checking and saving the user guesses
+    guesses = [];
+    lifes = [];
     
 
-    document.onkeyup = function(event) {
+    document.getElementById("life").innerHTML= "Lifes Left: 10" + lifes;
 
-         player = event.key;
+// This part checks the key that the user is pressing
+    document.onkeyup = function(event){
 
-        if(justin.indexOf(player) > -1){
-        
-            for( var b = 0; b < justin.length; b++){
-            
-                
+        playerguess = event.key;
 
+// In this part what ever the user is pressing it will look into the random of word that was picked and see if 
+// is correct
+        if( random.indexOf(playerguess) > -1){
+// In this part it is looping into the random word and also checking if the user guessed the right letter is pressed it will 
+// display it in the correct area
+            for(var d = 0; d < random.length; d++)
+            {
+             if(random[d] === playerguess)
+             {
+                 underscore[d] = playerguess
+                 console.log(underscore);
+             }
             }
-
-
-
-
-        }       
-        else{
-            
-            guesses.push(player);
-            console.log(guesses);
-
 
         }
-     
-
-            }
+        else{
+            guesses.push(playerguess);
+            lifes--;
+            document.getElementById("guess").textContent = "Guesses made: " + guesses;     
+            console.log(guesses);
+                  
             
+        }
+    }
+
         
         
     
