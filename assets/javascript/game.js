@@ -36,7 +36,15 @@ console.log(random);
            console.log(underscore);          
         }
 // this displays the underscore on the screen
-        document.getElementById("randomword").textContent = underscore.join(" ");
+        document.getElementById("randomword").textContent = underscore;
+
+// This is for the HTML to check lifes
+
+        guesses = [];
+        lifes = 10;
+        document.getElementById("life").textContent ="Lifes Left: " + lifes;
+    
+    
         }
 
 // =====================================================================================================
@@ -44,12 +52,29 @@ console.log(random);
 // =====================================================================================================
 // =====================================================================================================
 // =====================================================================================================
-
-    guesses = [];
-    lifes = [];
     
+    function winsNLoses()
+    {
+        if(lifes === 0)
+        {
+            loses++;
+            document.getElementById("loses").textContent = "Loses: " + loses;
+         
 
-    document.getElementById("life").innerHTML= "Lifes Left: 10" + lifes;
+            alert("you LOSE!!");
+        }
+        else if(underscore === random.length){
+        wins++;
+        document.getElementById("win").textContent = "Wins: " + wins;
+        alert("you won bro");
+
+        // for(var i = 0; i < underscore.length; i++) {
+        //     if(random[i] == underscore[i]){
+
+            }
+        };
+    
+    document.getElementById("win").textContent = "Wins: " + wins;
 
 // This part checks the key that the user is pressing
     document.onkeyup = function(event){
@@ -66,7 +91,8 @@ console.log(random);
              if(random[d] === playerguess)
              {
                  underscore[d] = playerguess
-                 console.log(underscore);
+                 document.getElementById("randomword").textContent = underscore;
+                 winsNLoses();
              }
             }
 
@@ -74,12 +100,18 @@ console.log(random);
         else{
             guesses.push(playerguess);
             lifes--;
+            console.log(lifes);
+
             document.getElementById("guess").textContent = "Guesses made: " + guesses;     
             console.log(guesses);
-                  
+            document.getElementById("life").textContent ="Lifes Left: " + lifes;
+            winsNLoses();
             
         }
     }
+   
+
+
 
         
         
